@@ -1,10 +1,10 @@
 var webpack = require("webpack");
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
   entry: "./main.js",
   output: { filename: "bundle.js" },
-  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -19,5 +19,10 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       }
     ]
-  }
+  },
+  plugins:[
+    new HTMLWebpackPlugin({
+      template:path.join(__dirname,'../') + '/index.html'
+    })
+  ]
 };
