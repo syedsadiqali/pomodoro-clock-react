@@ -1,84 +1,173 @@
-/* common */
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css?family=Merriweather&display=swap");
 
 * {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Merriweather", serif;
+}
+.nav-bar > .logo {
+  background: rgb(26, 42, 108);
+  background: linear-gradient(
+    102deg,
+    rgba(26, 42, 108, 1) 0%,
+    rgba(178, 31, 31, 1) 18%,
+    rgba(253, 187, 45, 1) 46%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 5px #be3822;
+}
+
+.clock {
+  background: transparent
+    linear-gradient(254deg, #1a2a6c 0%, #b21f1f 48%, #fdbb2d 100%) 0% 0%
+    no-repeat padding-box;
+  border-radius: 40px;
+}
+
+.inner-box {
+  background: white;
+  box-sizing: border-box;
+  border-radius: 34px;
 }
 
 button {
-  color: #393c5e;
-  background: white;
-  border: 2px solid black;
-  padding: 0 10px;
-  font-weight: bold;
-  margin: 10px;
+  @apply text-blue-700 border-2 border-blue-500 m-2 p-2 rounded-full;
 }
 
-button:hover:enabled {
-  background-color: yellow;
+.nav-bar > a {
+  color: #1a2a6c;
+  text-shadow: 3px 3px 10px #1a2a6c;
+  @apply font-extrabold;
+}
+
+.what-is {
+  background: transparent
+    linear-gradient(251deg, #fdbb2d 0%, #b21f1f 53%, #1a2a6c 100%) 0% 0%
+    no-repeat padding-box;
+  opacity: 1;
+}
+.what-is > p,
+.how-to > p {
+  text-align: left;
+  font: Italic 30px Merriweather;
+  padding: 65px;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  opacity: 1;
+}
+.what-is > h2,
+.how-to > h2 {
+  font: Italic 30px Merriweather;
+  padding-top: 20px;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  opacity: 1;
+  text-align: center;
+}
+.how-to {
+  background: white;
+}
+.how-to > p,
+.how-to > h2 {
   color: black;
 }
 
-button:active {
-  box-shadow: 2px 2px 10px black;
+.time>p{
+  color:#1A2A6C;
+  font-size:35px;
+  font-weight: 900;
+  text-shadow: 0px 0px 2px #FDBB2D;
 }
 
-button:focus {
-  outline: none;
-}
+/* 
+  * {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
 
-/* clock App */
+  button {
+    color: #393c5e;
+    background: white;
+    border: 2px solid black;
+    padding: 0 10px;
+    font-weight: bold;
+    margin: 10px;
+  }
 
-.ClockApp {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
+  button:hover:enabled {
+    background-color: yellow;
+    color: black;
+  }
+
+  button:active {
+    box-shadow: 2px 2px 10px black;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  /* clock App */
+
+/* .ClockApp {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  } */
 
 /* clock component */
 
-.clock {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 100px;
-  border: 2px solid black;
-}
+/* 
+  .clock{
+    width: 500px;
+    height: 300px;
+    border: 2px solid black;
+  }
 
-.clock > p {
-  font-size: 30px;
-  font-weight: bold;
-}
+  .clock-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
-/* timerField component */
+  .clock > p {
+    font-size: 30px;
+    font-weight: bold;
+  }
 
-.timer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
+  /* timerField component */
+/* 
+  .timer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
-.timer > button {
-  font-size: 15px;
-  width: 25px;
-  height: 25px;
-  line-height: 0;
-  padding: 0;
-  border-radius: 50%;
-}
-.timer > p {
-  font-size: 30px;
-  margin: 0 auto;
-  text-align: center;
-}
+  .timer > button {
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    line-height: 0;
+    padding: 0;
+    border-radius: 50%;
+  }
+  .timer > p {
+    font-size: 30px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-/* startStop component */
-
-button:disabled {
-  background: #dddddd;
-  border: 1px solid grey;
-}
+  /* startStop component */
+/* 
+  button:disabled {
+    background: #dddddd;
+    border: 1px solid grey;
+  } */

@@ -2,15 +2,17 @@ import React from "react";
 
 function ButtonGroup(props) {
   return (
-    <div>
+    <div className="flex items-center justify-center">
       <button
         onClick={() => props.startStop()}
-        disabled={props.time[0] >= props.minutes}
       >
         {props.running ? "Stop" : "Start"}
       </button>
-      <button onClick={() => props.clear()} disabled={props.running}>
-        Clear
+      <button
+        onClick={() => props.reset()}
+        disabled={props.running}
+      >
+        Reset
       </button>
     </div>
   );

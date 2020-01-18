@@ -1,22 +1,22 @@
 import React from "react";
 import { Clock } from "./components/clock";
-import { TimerField } from "./components/timerField";
 import { ButtonGroup } from "./components/buttonGroup";
 
 import "./components/style.css";
+import { NavBar } from "./components/navBar";
 
 // Todo : 1. More Styling
 // 3. An Introduction to Pomodoros
-// 5. Design (!! Do it First)
 // 6. Animations
+// desktop alerts
+
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      time: [0, 0],
+      timer: 1500,
       running: false,
-      minutes: 25,
       finished: false
     };
   }
@@ -25,7 +25,13 @@ class App extends React.Component {
     this.interval = setInterval(
       () =>
         this.state.running
-          ? this.setState(state => this.getUpdatedState(state))
+          ? this.setState(state => {
+            return {
+              timer: state.timer > 0 ? state.timer - 1 : state.timer,
+              finished: state.timer === 0,
+              running: state.timer > 0
+            }
+          })
           : null,
       1000
     );
@@ -37,73 +43,36 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="ClockApp">
-        <p>
-          Pomodoro Clock : Set the Interval and Click Start, Stop if you want to
-          in between (i advice don't)
-        </p>
-        <Clock time={this.state.time} />
-
-        <TimerField
-          updateMinutes={this.updateMinutes}
-          minutes={this.state.minutes}
-        />
-
+      <div className="container mx-auto lg:px-2">
+        <NavBar />
+        <Clock timer={this.state.timer} updateMinutes={this.updateMinutes} />
         <ButtonGroup
           startStop={this.startStop}
-          clear={this.clear}
+          reset={this.reset}
           running={this.state.running}
-          time={this.state.time}
-          minutes={this.state.minutes}
+          timer={this.state.timer}
         />
-
         {this.state.finished ? <h1>Timer Expired</h1> : null}
+        <div className="what-is" id="whatis">
+          <h2>What is Pomodoro?</h2>
+<p>          Pomodoro is a time management technique, developed in 1980s. Traditionally, it uses a timer set to 25 minutes, separated by short breaks. It helps you work effectively and tirelessly, taking short breaks every x minutes (you decide).
+</p>
+        </div>
+        <div className="how-to" id="howto">
+          <h2>How to use Pomodoro ?</h2>
+<p>          Follow Simple steps as simple as :- 1. Adjust time if you want (add or substract minutes of active time). 2. Click Start, and start focussing on your task, Rest Options work as name suggest.
+</p>
+        </div>
       </div>
     );
   }
 
-  updateMinutes = (add = true) => {
-    this.setState(state => {
-      return {
-        minutes: add
-          ? state.minutes < 60
-            ? state.minutes + 1
-            : state.minutes
-          : state.minutes > 5
-          ? state.minutes - 1
-          : state.minutes
-      };
-    });
-  };
+  updateMinutes = (duration = 25) => this.setState({ timer: duration * 60, running: false, finished: false });
 
-  startStop = () => {
-    this.setState(state => {
-      return {
-        running: !state.running
-      };
-    });
-  };
+  startStop = () => this.setState(state => { return { running: !state.running } });
 
-  clear = () => {
-    this.setState({ time: [0, 0], running: false, finished: false });
-  };
+  reset = () => this.setState({ timer: 1500, running: false, finished: false });
 
-  getUpdatedState(state) {
-    let timeArr = state.time;
-    if (timeArr[1] < 60) {
-      timeArr[1] = timeArr[1] + 1;
-    } else {
-      timeArr[1] = 0;
-      if (timeArr[0] < 60 && timeArr[0] < state.minutes) {
-        timeArr[0] = timeArr[0] + 1;
-      }
-    }
-    return {
-      time: timeArr,
-      running: timeArr[0] < state.minutes,
-      finished: timeArr[0] >= state.minutes
-    };
-  }
 }
 
 export default App;

@@ -12,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^3.0.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "tailwindcss": "^1.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",

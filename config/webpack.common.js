@@ -16,13 +16,26 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('tailwindcss'),
+                require('autoprefixer'),
+              ],
+            },
+          },
+        ]
       }
     ]
   },
-  plugins:[
+  plugins: [
     new HTMLWebpackPlugin({
-      template:path.join(__dirname,'../') + '/index.html'
+      template: path.join(__dirname, '../') + '/index.html'
     })
   ]
 };
