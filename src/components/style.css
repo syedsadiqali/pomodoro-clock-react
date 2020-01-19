@@ -2,8 +2,6 @@
 
 @tailwind components;
 
-@tailwind utilities;
-
 @import url("https://fonts.googleapis.com/css?family=Merriweather&display=swap");
 
 * {
@@ -37,6 +35,25 @@
 
 button {
   @apply text-blue-700 border-2 border-blue-500 m-2 p-2 rounded-full;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+button:hover,
+button.active,
+button.clicked {
+  color: white;
+  background-color: #1a2a6c;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  font-weight: bold;
+}
+
+button:disabled,
+button:disabled:hover {
+  cursor: not-allowed;
+  border: 1px solid gray;
+  color: gray;
+  background: white;
 }
 
 .nav-bar > a {
@@ -77,97 +94,38 @@ button {
   color: black;
 }
 
-.time>p{
-  color:#1A2A6C;
-  font-size:35px;
+.time > p {
+  color: #1a2a6c;
   font-weight: 900;
-  text-shadow: 0px 0px 2px #FDBB2D;
+  text-shadow: 0px 0px 2px #fdbb2d;
 }
 
-/* 
-  * {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+button:focus {
+  outline: none;
+}
+
+.expired-label {
+  color: #1a2a6c;
+  font-weight: 900;
+  text-shadow: 0px 0px 2px #fdbb2d;
+  animation: blinkingText 1.2s infinite;
+}
+@keyframes blinkingText {
+  0% {
+    color: #000;
   }
-
-  button {
-    color: #393c5e;
-    background: white;
-    border: 2px solid black;
-    padding: 0 10px;
-    font-weight: bold;
-    margin: 10px;
+  49% {
+    color: #000;
   }
-
-  button:hover:enabled {
-    background-color: yellow;
-    color: black;
+  60% {
+    color: transparent;
   }
-
-  button:active {
-    box-shadow: 2px 2px 10px black;
+  99% {
+    color: transparent;
   }
-
-  button:focus {
-    outline: none;
+  100% {
+    color: #000;
   }
+}
 
-  /* clock App */
-
-/* .ClockApp {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  } */
-
-/* clock component */
-
-/* 
-  .clock{
-    width: 500px;
-    height: 300px;
-    border: 2px solid black;
-  }
-
-  .clock-time {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .clock > p {
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  /* timerField component */
-/* 
-  .timer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .timer > button {
-    font-size: 15px;
-    width: 25px;
-    height: 25px;
-    line-height: 0;
-    padding: 0;
-    border-radius: 50%;
-  }
-  .timer > p {
-    font-size: 30px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  /* startStop component */
-/* 
-  button:disabled {
-    background: #dddddd;
-    border: 1px solid grey;
-  } */
+@tailwind utilities;
